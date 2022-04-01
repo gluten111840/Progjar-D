@@ -92,19 +92,19 @@ def lihatversi(is_secure=False):
     hasil = send_command(cmd,is_secure=is_secure)
     return hasil
     
-
-
-if __name__=='__main__':
+def multithread(numbersofrequests):
     texec = dict()
-    numbers = 5
     time_start = datetime.datetime.now()
-    for k in range(numbers):
+    for k in range(numbersofrequests):
         texec[k] = threading.Thread(target=getdatapemain, args=(k+1,))
         texec[k].start()
     
-    for k in range(numbers):
+    for k in range(numbersofrequests):
         texec[k].join()
     
     time_end = datetime.datetime.now()
     executed = time_end - time_start
-    print(f"Waktu TOTAL yang dibutuhkan {executed} detik {time_start} s/d {time_end}")
+    return executed
+
+if __name__=='__main__':
+    multithread(5)
