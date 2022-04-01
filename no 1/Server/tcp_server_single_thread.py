@@ -13,7 +13,7 @@ alldata['3']=dict(nomor=3, nama="aaron wan-bissaka", posisi="bek kanan")
 alldata['4']=dict(nomor=4, nama="victor lindelof", posisi="bek tengah kanan")
 alldata['5']=dict(nomor=5, nama="player lima", posisi="penyerang")
 alldata['6']=dict(nomor=6, nama="player enam", posisi="penyerang")
-alldata['7']=dict(nomor=7, nama="luk tujuh", posisi="bek kiri")
+alldata['7']=dict(nomor=7, nama="luke tujuh", posisi="bek kiri")
 alldata['8']=dict(nomor=8, nama="luke delapan", posisi="bek kanan")
 alldata['9']=dict(nomor=9, nama="luke sembilan", posisi="bek tengah")
 alldata['10']=dict(nomor=10, nama="luke sepuluh", posisi="bek tengah")
@@ -42,7 +42,7 @@ def proses_request(request_string):
         if (command == 'getdatapemain'):
             # getdata spasi parameter1
             # parameter1 harus berupa nomor pemain
-            logging.warning("getdata")
+            # logging.warning("getdata")
             nomorpemain = cstring[1].strip()
             try:
                 logging.warning(f"data {nomorpemain} ketemu")
@@ -60,8 +60,8 @@ def serialisasi(a):
     #print(a)
     #serialized = str(dicttoxml.dicttoxml(a))
     serialized =  json.dumps(a)
-    logging.warning("serialized data")
-    logging.warning(serialized)
+    # logging.warning("serialized data")
+    # logging.warning(serialized)
     return serialized
 
 def run_server(server_address,is_secure=False):
@@ -88,7 +88,7 @@ def run_server(server_address,is_secure=False):
 
     while True:
         # Wait for a connection
-        logging.warning("waiting for a connection")
+        # logging.warning("waiting for a connection")
         koneksi, client_address = sock.accept()
         logging.warning(f"Incoming connection from {client_address}")
         # Receive the data in small chunks and retransmit it

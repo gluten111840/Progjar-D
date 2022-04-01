@@ -101,10 +101,12 @@ def run_server(server_address,is_secure=False):
                 connection = socket_context.wrap_socket(koneksi, server_side=True)
             else:
                 connection = koneksi
+            
+            print("Thread ke-", count_threads+1)
             threads[count_threads] = threading.Thread(target=proc_connection, args=(client_address, connection))
             threads[count_threads].start()
             count_threads += 1
-            # Clean up the connection
+            
         except ssl.SSLError as error_ssl:
             logging.warning(f"SSL error: {str(error_ssl)}")
             
@@ -128,7 +130,6 @@ def proc_connection(client_address, connection):
                 selesai = False
                 data_received = ""  # string
                 break
-
         else:
             logging.warning(f"no more data from {client_address}")
             break

@@ -8,6 +8,7 @@ import os
 import time
 import datetime
 import threading
+import random
 
 server_address = ('172.16.16.102', 12000)
 
@@ -15,7 +16,7 @@ def make_socket(destination_address='localhost',port=12000):
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = (destination_address, port)
-        logging.warning(f"connecting to {server_address}")
+        # logging.warning(f"connecting to {server_address}")
         sock.connect(server_address)
         return sock
     except Exception as ee:
@@ -54,9 +55,9 @@ def send_command(command_str,is_secure=False):
     else:
         sock = make_socket(alamat_server,port_server)
 
-    logging.warning(f"connecting to {server_address}")
+    # logging.warning(f"connecting to {server_address}")
     try:
-        logging.warning(f"sending message ")
+        # logging.warning(f"sending message ")
         sock.sendall(command_str.encode())
         # Look for the response, waiting until socket is done (no more data)
         data_received="" #empty string
@@ -74,10 +75,10 @@ def send_command(command_str,is_secure=False):
         # at this point, data_received (string) will contain all data coming from the socket
         # to be able to use the data_received as a dict, need to load it using json.loads()
         hasil = deserialisasi(data_received)
-        logging.warning("data received from server:")
+        # logging.warning("data received from server:")
         return hasil
     except Exception as ee:
-        logging.warning(f"error during data receiving {str(ee)}")
+        # logging.warning(f"error during data receiving {str(ee)}")
         return False
 
 
@@ -96,7 +97,7 @@ def multithread(numbersofrequests):
     texec = dict()
     time_start = datetime.datetime.now()
     for k in range(numbersofrequests):
-        texec[k] = threading.Thread(target=getdatapemain, args=(k+1,))
+        texec[k] = threading.Thread(target=getdatapemain, args=(random.randint(1, 20),))
         texec[k].start()
     
     for k in range(numbersofrequests):
@@ -107,4 +108,4 @@ def multithread(numbersofrequests):
     return executed
 
 if __name__=='__main__':
-    multithread(5)
+    print("Tereksekusi selama: ", multithread(5))
