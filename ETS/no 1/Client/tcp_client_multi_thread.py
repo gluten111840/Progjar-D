@@ -108,4 +108,4 @@ def multithread(numbersofrequests):
     return executed
 
 if __name__=='__main__':
-    print("Tereksekusi selama: ", multithread(5))
+    print("Tereksekusi selama: ", multithread(1))
