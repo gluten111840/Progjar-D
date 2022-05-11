@@ -39,3 +39,14 @@ GET
   - status: ERROR
   - data: pesan kesalahan
 
+DELETE
+* TUJUAN: untuk menghapus file dengan menyebutkan nama file dalam parameter
+* PARAMETER:
+  - PARAMETER1 : nama file
+* RESULT:
+- BERHASIL:
+  - status: OK
+  - data: pesan bahwa file telah terhapus
+- GAGAL:
+  - status: ERROR
+  - data: pesan kesalahan
