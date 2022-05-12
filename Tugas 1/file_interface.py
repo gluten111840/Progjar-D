@@ -38,6 +38,22 @@ class FileInterface:
         except Exception as e:
             return dict(status='ERROR',data=str(e))
 
+    def post(self,params=[]):
+        try:
+            print("before open")
+            filename = params[0]
+            if (os.path.exists(filename) == True):
+                return dict(status='ERROR',data=f'File {filename} sudah ada')
+            file = base64.b64decode(params[1])
+            
+            fp = open(filename,'wb+')
+            print("after open")
+            fp.write(file)
+            fp.close()
+            
+            return dict(status='OK',data=f'File {filename} berhasil terupload')
+        except Exception as e:
+            return dict(status='ERROR',data=str(e))
 
 if __name__=='__main__':
     f = FileInterface()
